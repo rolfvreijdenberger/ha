@@ -7,7 +7,7 @@ blueprint:
   domain: automation
   source_url: https://github.com/rolfvreijdenberger/ha/blueprint-device-ROB_200_025_0.yaml
   input:
-    remote:
+    switch:
       name: switch
       description: select ROB_200-025-0 device
       selector:
