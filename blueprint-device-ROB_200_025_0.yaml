@@ -5,7 +5,7 @@ blueprint:
     For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.
     For each button the following is available: short press, long press (press and hold), long press release
   domain: automation
-  source_url: https://github.com/rolfvreijdenberger/ha/blueprint-device-ROB_200_025_0.yaml
+  source_url: https://github.com/rolfvreijdenberger/ha/blob/main/blueprint-device-ROB_200_025_0.yaml
   input:
     switch:
       name: switch
