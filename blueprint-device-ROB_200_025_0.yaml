@@ -1,0 +1,230 @@
+blueprint:
+  name: Robb ROB_200-025-0 wireless zigbee switch with 8 buttons (black)
+  description:  |
+    Blueprint for the use of the ROB_200-025-0 switch when used via the zha integration of home assistant.
+    For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.
+    For each button the following is available: short press, long press (press and hold), long press release
+  domain: automation
+  source_url: https://github.com/rolfvreijdenberger/ha/blueprint-device-ROB_200_025_0.yaml
+  input:
+    remote:
+      name: switch
+      description: select ROB_200-025-0 device
+      selector:
+        device:
+          integration: zha
+          model: "ROB_200-025-0"
+                          
+    1_1_short: #format <row>_<1/0>_<event>
+      name: on button 1 short press  
+      default: []
+      selector:
+        action: {}
+    1_1_long:
+      name: on button 1 long press 
+      default: []
+      selector:
+        action: {}
+    1_1_long_release:
+      name: on button 1 long press release 
+      default: []
+      selector:
+        action: {}
+    2_1_short:
+      name: on button 2 short press  
+      default: []
+      selector:
+        action: {}
+    2_1_long:
+      name: on button 2 long press 
+      default: []
+      selector:
+        action: {}
+    2_1_long_release:
+      name: on button 2 long press release 
+      default: []
+      selector:
+        action: {}
+    3_1_short:
+      name: on button 3 short press  
+      default: []
+      selector:
+        action: {}
+    3_1_long:
+      name: on button 3 long press 
+      default: []
+      selector:
+        action: {}
+    3_1_long_release:
+      name: on button 3 long press release 
+      default: []
+      selector:
+        action: {}
+    4_1_short:
+      name: on button 4 short press  
+      default: []
+      selector:
+        action: {}
+    4_1_long:
+      name: on button 4 long press 
+      default: []
+      selector:
+        action: {}
+    4_1_long_release:
+      name: on button 4 long press release 
+      default: []
+      selector:
+        action: {}
+
+
+    1_0_short:
+      name: off button 1 short press  
+      default: []
+      selector:
+        action: {}
+    1_0_long:
+      name: off button 1 long press 
+      default: []
+      selector:
+        action: {}
+    1_0_long_release:
+      name: off button 1 long press release 
+      default: []
+      selector:
+        action: {}
+    2_0_short:
+      name: off button 2 short press  
+      default: []
+      selector:
+        action: {}
+    2_0_long:
+      name: off button 2 long press 
+      default: []
+      selector:
+        action: {}
+    2_0_long_release:
+      name: off button 2 long press release 
+      default: []
+      selector:
+        action: {}
+    3_0_short:
+      name: off button 3 short press  
+      default: []
+      selector:
+        action: {}
+    3_0_long:
+      name: off button 3 long press 
+      default: []
+      selector:
+        action: {}
+    3_0_long_release:
+      name: off button 3 long press release 
+      default: []
+      selector:
+        action: {}
+    4_0_short:
+      name: off button 4 short press  
+      default: []
+      selector:
+        action: {}
+    4_0_long:
+      name: off button 4 long press 
+      default: []
+      selector:
+        action: {}
+    4_0_long_release:
+      name: off button 4 long press release 
+      default: []
+      selector:
+        action: {}
+
+
+
+mode: restart
+max_exceeded: silent
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: !input "switch"
+  
+action:
+  - variables:
+      endpoint_id: '{{ trigger.event.data.endpoint_id }}'
+      command: '{{ trigger.event.data.command }}'
+  - choose:
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'on' }}"
+        sequence: !input "1_1_short"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'on' }}"
+        sequence: !input "2_1_short"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'on' }}"
+        sequence: !input "3_1_short"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'on' }}"
+        sequence: !input "4_1_short"
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'move_with_on_off' }}"
+        sequence: !input "1_1_long"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'move_with_on_off' }}"
+        sequence: !input "2_1_long"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'move_with_on_off' }}"
+        sequence: !input "3_1_long"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'move_with_on_off' }}"
+        sequence: !input "4_1_long"
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'stop_with_on_off' }}"
+        sequence: !input "1_1_long_release"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'stop_with_on_off' }}"
+        sequence: !input "2_1_long_release"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'stop_with_on_off' }}"
+        sequence: !input "3_1_long_release"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'stop_with_on_off' }}"
+        sequence: !input "4_1_long_release"
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'off' }}"
+        sequence: !input "1_0_short"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'off' }}"
+        sequence: !input "2_0_short"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'off' }}"
+        sequence: !input "3_0_short"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'off' }}"
+        sequence: !input "4_0_short"
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'move' }}"
+        sequence: !input "1_0_long"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'move' }}"
+        sequence: !input "2_0_long"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'move' }}"
+        sequence: !input "3_0_long"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'move' }}"
+        sequence: !input "4_0_long"
+      - conditions:
+          - "{{ endpoint_id == 1 and command == 'stop' }}"
+        sequence: !input "1_0_long_release"
+      - conditions:
+          - "{{ endpoint_id == 2 and command == 'stop' }}"
+        sequence: !input "2_0_long_release"
+      - conditions:
+          - "{{ endpoint_id == 3 and command == 'stop' }}"
+        sequence: !input "3_0_long_release"
+      - conditions:
+          - "{{ endpoint_id == 4 and command == 'stop' }}"
+        sequence: !input "4_0_long_release"
+
+
+
