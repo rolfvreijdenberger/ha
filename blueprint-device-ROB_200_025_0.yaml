@@ -1,145 +1,203 @@
 blueprint:
-  name: Robb ROB_200-025-0 wireless zigbee switch with 8 buttons (black)
+  name: Robb ROB_200-025-0 wireless zigbee black switch with 8 buttons.
   description:  |
-    Blueprint for the use of the ROB_200-025-0 switch when used via the zha integration of home assistant.
-    For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.
-    For each button the following is available: short press, long press (press and hold), long press release
+    v1.0.0 blueprint for the use of the [ROB_200-025-0](https://www.robbshop.nl/draadloze-zigbee-schakelaar-met-8-knoppen-zwart) switch when used via the zha integration of home assistant.
+    For each button the following is available: short press, long press (press and hold), long press release.    
+    For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.  
   domain: automation
   homeassistant:
     min_version: 2024.8.0
   author: Rolf Vreijdenberger. Based on other implementation by https://github.com/Bekkie/ha-blueprints
   source_url: https://github.com/rolfvreijdenberger/ha/blob/main/blueprint-device-ROB_200_025_0.yaml
   input:
-    switch:
-      name: switch
-      description: select ROB_200-025-0 device
-      selector:
-        device:
-          integration: zha
-          model: "ROB_200-025-0"
-                          
-    1_1_short: #format <row>_<1/0>_<event>
-      name: on button 1 short press  
-      default: []
-      selector:
-        action: {}
-    1_1_long:
-      name: on button 1 long press 
-      default: []
-      selector:
-        action: {}
-    1_1_long_release:
-      name: on button 1 long press release 
-      default: []
-      selector:
-        action: {}
-    2_1_short:
-      name: on button 2 short press  
-      default: []
-      selector:
-        action: {}
-    2_1_long:
-      name: on button 2 long press 
-      default: []
-      selector:
-        action: {}
-    2_1_long_release:
-      name: on button 2 long press release 
-      default: []
-      selector:
-        action: {}
-    3_1_short:
-      name: on button 3 short press  
-      default: []
-      selector:
-        action: {}
-    3_1_long:
-      name: on button 3 long press 
-      default: []
-      selector:
-        action: {}
-    3_1_long_release:
-      name: on button 3 long press release 
-      default: []
-      selector:
-        action: {}
-    4_1_short:
-      name: on button 4 short press  
-      default: []
-      selector:
-        action: {}
-    4_1_long:
-      name: on button 4 long press 
-      default: []
-      selector:
-        action: {}
-    4_1_long_release:
-      name: on button 4 long press release 
-      default: []
-      selector:
-        action: {}
+    switch_selector:
+      name: select the switch
+      description: the Robb device can be selected here (from the zha integration) for which you want to define the actions for each button presssand release.
+      icon: mdi:numeric-8-box-multiple-outline
+      input:
+        switch:
+          name: switch
+          description: select ROB_200-025-0 device (switch)
+          selector:
+            device:
+              integration: zha
+              model: ROB_200-025-0
+              multiple: false
+          
+    # collapsible sections for all buttons   
+    row_1_on:
+      name: first row 'on' button
+      description: all actions for the 'on' button of the first row.
+      icon: mdi:power-cycle
+      collapsed: true
+      input:
+        1_1_short:
+          name: on button short press
+          default: []
+          selector:
+            action: {}
+        1_1_long:
+          name: on button long press
+          default: []
+          selector:
+            action: {}
+        1_1_long_release:
+          name: on button long press release
+          default: []
+          selector:
+            action: {}
+            
+    row_2_on:
+      name: second row 'on' button
+      description: all actions for the 'on' button of the second row
+      icon: mdi:power-cycle
+      collapsed: true
+      input:
+        2_1_short:
+          name: on button short press
+          default: []
+          selector:
+            action: {}
+        2_1_long:
+          name: on button long press
+          default: []
+          selector:
+            action: {}
+        2_1_long_release:
+          name: on button long press release
+          default: []
+          selector:
+            action: {}
+  
+    row_3_on:
+      name: third row 'on' button
+      description: all actions for the 'on' button of the third row
+      icon: mdi:power-cycle
+      collapsed: true
+      input:
+        3_1_short:
+          name: on button short press
+          default: []
+          selector:
+            action: {}
+        3_1_long:
+          name: on button long press
+          default: []
+          selector:
+            action: {}
+        3_1_long_release:
+          name: on button long press release
+          default: []
+          selector:
+            action: {}
+            
+    row_4_on:
+      name: fourth row 'on' button
+      description: all actions for the 'on' button of the fourth row
+      icon: mdi:power-cycle
+      collapsed: true
+      input:
+        4_1_short:
+          name: on button short press
+          default: []
+          selector:
+            action: {}
+        4_1_long:
+          name: on button long press
+          default: []
+          selector:
+            action: {}
+        4_1_long_release:
+          name: on button long press release
+          default: []
+          selector:
+            action: {}
+            
+    row_1_off:
+      name: first row 'off' button
+      description: all actions for the 'off' button of the first row
+      icon: mdi:power-off
+      collapsed: true
+      input:
+        1_0_short:
+          name: off button short press  
+          default: []
+          selector:
+            action: {}
+        1_0_long:
+          name: off button long press 
+          default: []
+          selector:
+            action: {}
+        1_0_long_release:
+          name: off button long press release 
+          default: []
+          selector:
+            action: {}
 
-
-    1_0_short:
-      name: off button 1 short press  
-      default: []
-      selector:
-        action: {}
-    1_0_long:
-      name: off button 1 long press 
-      default: []
-      selector:
-        action: {}
-    1_0_long_release:
-      name: off button 1 long press release 
-      default: []
-      selector:
-        action: {}
-    2_0_short:
-      name: off button 2 short press  
-      default: []
-      selector:
-        action: {}
-    2_0_long:
-      name: off button 2 long press 
-      default: []
-      selector:
-        action: {}
-    2_0_long_release:
-      name: off button 2 long press release 
-      default: []
-      selector:
-        action: {}
-    3_0_short:
-      name: off button 3 short press  
-      default: []
-      selector:
-        action: {}
-    3_0_long:
-      name: off button 3 long press 
-      default: []
-      selector:
-        action: {}
-    3_0_long_release:
-      name: off button 3 long press release 
-      default: []
-      selector:
-        action: {}
-    4_0_short:
-      name: off button 4 short press  
-      default: []
-      selector:
-        action: {}
-    4_0_long:
-      name: off button 4 long press 
-      default: []
-      selector:
-        action: {}
-    4_0_long_release:
-      name: off button 4 long press release 
-      default: []
-      selector:
-        action: {}
+    row_2_off:
+      name: second row 'off' button
+      description: all actions for the 'off' button of the second row
+      icon: mdi:power-off
+      collapsed: true
+      input:
+        2_0_short:
+          name: off button short press  
+          default: []
+          selector:
+            action: {}
+        2_0_long:
+          name: off button long press 
+          default: []
+          selector:
+            action: {}
+        2_0_long_release:
+          name: off button long press release 
+          default: []
+          selector:
+            action: {}
+    row_3_off:
+      name: third row 'off' button
+      description: all actions for the 'off' button of the third row
+      icon: mdi:power-off
+      collapsed: true
+      input:
+        3_0_short:
+          name: off button short press  
+          default: []
+          selector:
+            action: {}
+        3_0_long:
+          name: off button long press 
+          default: []
+          selector:
+            action: {}
+        3_0_long_release:
+          name: off button long press release 
+          default: []
+          selector:
+            action: {}
+    row_4_off:
+      name: fourth row 'off' button
+      description: all actions for the 'off' button of the fourth row
+      icon: mdi:power-off
+      collapsed: true
+      input:
+        4_0_short:
+          name: off button short press  
+          default: []
+          selector:
+            action: {}
+        4_0_long:
+          name: off button long press 
+          default: []
+          selector:
+            action: {}
+        4_0_long_release:
+          name: off button long press release 
+          default: []
+          selector:
+            action: {}
 
 
 
@@ -147,14 +205,15 @@ mode: restart
 max_exceeded: silent
 trigger:
   - platform: event
-    event_type: zha_event
-    event_data:
+    event_type: zha_event # only trigger for zha_events
+    event_data: # only trigger for the right switch, defined by the user as input.
       device_id: !input "switch"
   
 action:
-  - variables:
-      endpoint_id: '{{ trigger.event.data.endpoint_id }}'
-      command: '{{ trigger.event.data.command }}'
+  - variables: # extraction of data from the zha_event
+      endpoint_id: '{{ trigger.event.data.endpoint_id }}' # this is the same as the row of the buttons
+      command: '{{ trigger.event.data.command }}' # the command associated with a type of press
+      
   - choose:
       - conditions:
           - "{{ endpoint_id == 1 and command == 'on' }}"
