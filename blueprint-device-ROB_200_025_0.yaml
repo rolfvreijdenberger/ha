@@ -5,6 +5,9 @@ blueprint:
     For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.
     For each button the following is available: short press, long press (press and hold), long press release
   domain: automation
+  homeassistant:
+    min_version: 2024.8.0
+  author: Rolf Vreijdenberger. Based on other implementation by https://github.com/Bekkie/ha-blueprints
   source_url: https://github.com/rolfvreijdenberger/ha/blob/main/blueprint-device-ROB_200_025_0.yaml
   input:
     switch:
