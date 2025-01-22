@@ -154,77 +154,24 @@ action:
       command: '{{ trigger.event.data.command }}'
   - choose:
       - conditions:
-          - "{{ endpoint_id == 1 and command == 'on' }}"
-        sequence: !input "1_1_short"
+          - "{{ command == 'on' }}"
+        sequence: !input "{{ endpoint_id }}_1_short"
       - conditions:
-          - "{{ endpoint_id == 2 and command == 'on' }}"
-        sequence: !input "2_1_short"
+          - "{{ command == 'off' }}"
+        sequence: !input "{{ endpoint_id }}_1_short"
       - conditions:
-          - "{{ endpoint_id == 3 and command == 'on' }}"
-        sequence: !input "3_1_short"
+          - "{{ command == 'move_with_on_off' }}"
+        sequence: !input "{{ endpoint_id }}_1_long"
       - conditions:
-          - "{{ endpoint_id == 4 and command == 'on' }}"
-        sequence: !input "4_1_short"
+          - "{{ command == 'stop_with_on_off' }}"
+        sequence: !input "{{ endpoint_id }}_1_long_release"
       - conditions:
-          - "{{ endpoint_id == 1 and command == 'move_with_on_off' }}"
-        sequence: !input "1_1_long"
+          - "{{ command == 'move' }}"
+        sequence: !input "{{ endpoint_id }}_0_long"
       - conditions:
-          - "{{ endpoint_id == 2 and command == 'move_with_on_off' }}"
-        sequence: !input "2_1_long"
-      - conditions:
-          - "{{ endpoint_id == 3 and command == 'move_with_on_off' }}"
-        sequence: !input "3_1_long"
-      - conditions:
-          - "{{ endpoint_id == 4 and command == 'move_with_on_off' }}"
-        sequence: !input "4_1_long"
-      - conditions:
-          - "{{ endpoint_id == 1 and command == 'stop_with_on_off' }}"
-        sequence: !input "1_1_long_release"
-      - conditions:
-          - "{{ endpoint_id == 2 and command == 'stop_with_on_off' }}"
-        sequence: !input "2_1_long_release"
-      - conditions:
-          - "{{ endpoint_id == 3 and command == 'stop_with_on_off' }}"
-        sequence: !input "3_1_long_release"
-      - conditions:
-          - "{{ endpoint_id == 4 and command == 'stop_with_on_off' }}"
-        sequence: !input "4_1_long_release"
-      - conditions:
-          - "{{ endpoint_id == 1 and command == 'off' }}"
-        sequence: !input "1_0_short"
-      - conditions:
-          - "{{ endpoint_id == 2 and command == 'off' }}"
-        sequence: !input "2_0_short"
-      - conditions:
-          - "{{ endpoint_id == 3 and command == 'off' }}"
-        sequence: !input "3_0_short"
-      - conditions:
-          - "{{ endpoint_id == 4 and command == 'off' }}"
-        sequence: !input "4_0_short"
-      - conditions:
-          - "{{ endpoint_id == 1 and command == 'move' }}"
-        sequence: !input "1_0_long"
-      - conditions:
-          - "{{ endpoint_id == 2 and command == 'move' }}"
-        sequence: !input "2_0_long"
-      - conditions:
-          - "{{ endpoint_id == 3 and command == 'move' }}"
-        sequence: !input "3_0_long"
-      - conditions:
-          - "{{ endpoint_id == 4 and command == 'move' }}"
-        sequence: !input "4_0_long"
-      - conditions:
-          - "{{ endpoint_id == 1 and command == 'stop' }}"
-        sequence: !input "1_0_long_release"
-      - conditions:
-          - "{{ endpoint_id == 2 and command == 'stop' }}"
-        sequence: !input "2_0_long_release"
-      - conditions:
-          - "{{ endpoint_id == 3 and command == 'stop' }}"
-        sequence: !input "3_0_long_release"
-      - conditions:
-          - "{{ endpoint_id == 4 and command == 'stop' }}"
-        sequence: !input "4_0_long_release"
+          - "{{ command == 'stop' }}"
+        sequence: !input "{{ endpoint_id }}_0_long_release"
+
 
 
 
