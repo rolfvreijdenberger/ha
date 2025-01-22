@@ -5,6 +5,9 @@ blueprint:
     For debugging purposes, use the 'events' tab in 'developer tools' and subscribe to 'zha_event' and press 'start listening' to see the raw events.
     For each button the following is available: short press, long press (press and hold), long press release
   domain: automation
+  homeassistant:
+    min_version: 2024.8.0
+  author: Rolf Vreijdenberger, based on other implementation by https://github.com/Bekkie/ha-blueprints
   source_url: https://github.com/rolfvreijdenberger/ha/blob/main/blueprint-device-ROB_200_025_0.yaml
   input:
     switch:
@@ -14,129 +17,137 @@ blueprint:
         device:
           integration: zha
           model: "ROB_200-025-0"
-                          
-    1_1_short: #format <row>_<1/0>_<event>
-      name: on button 1 short press  
-      default: []
-      selector:
-        action: {}
-    1_1_long:
-      name: on button 1 long press 
-      default: []
-      selector:
-        action: {}
-    1_1_long_release:
-      name: on button 1 long press release 
-      default: []
-      selector:
-        action: {}
-    2_1_short:
-      name: on button 2 short press  
-      default: []
-      selector:
-        action: {}
-    2_1_long:
-      name: on button 2 long press 
-      default: []
-      selector:
-        action: {}
-    2_1_long_release:
-      name: on button 2 long press release 
-      default: []
-      selector:
-        action: {}
-    3_1_short:
-      name: on button 3 short press  
-      default: []
-      selector:
-        action: {}
-    3_1_long:
-      name: on button 3 long press 
-      default: []
-      selector:
-        action: {}
-    3_1_long_release:
-      name: on button 3 long press release 
-      default: []
-      selector:
-        action: {}
-    4_1_short:
-      name: on button 4 short press  
-      default: []
-      selector:
-        action: {}
-    4_1_long:
-      name: on button 4 long press 
-      default: []
-      selector:
-        action: {}
-    4_1_long_release:
-      name: on button 4 long press release 
-      default: []
-      selector:
-        action: {}
+    on_buttons: # start of section
+      name: all on buttons
+      icon: mdi:power-on
+      description: these options control all the 'on' button actions on the left side of the device
+      input:
+        1_1_short: #format <row>_<1/0>_<event>
+          name: on button 1 short press  
+          default: []
+          selector:
+            action: {}
+        1_1_long:
+          name: on button 1 long press 
+          default: []
+          selector:
+            action: {}
+        1_1_long_release:
+          name: on button 1 long press release 
+          default: []
+          selector:
+            action: {}
+        2_1_short:
+          name: on button 2 short press  
+          default: []
+          selector:
+            action: {}
+        2_1_long:
+          name: on button 2 long press 
+          default: []
+          selector:
+            action: {}
+        2_1_long_release:
+          name: on button 2 long press release 
+          default: []
+          selector:
+            action: {}
+        3_1_short:
+          name: on button 3 short press  
+          default: []
+          selector:
+            action: {}
+        3_1_long:
+          name: on button 3 long press 
+          default: []
+          selector:
+            action: {}
+        3_1_long_release:
+          name: on button 3 long press release 
+          default: []
+          selector:
+            action: {}
+        4_1_short:
+          name: on button 4 short press  
+          default: []
+          selector:
+            action: {}
+        4_1_long:
+          name: on button 4 long press 
+          default: []
+          selector:
+            action: {}
+        4_1_long_release:
+          name: on button 4 long press release 
+          default: []
+          selector:
+            action: {}
 
-
-    1_0_short:
-      name: off button 1 short press  
-      default: []
-      selector:
-        action: {}
-    1_0_long:
-      name: off button 1 long press 
-      default: []
-      selector:
-        action: {}
-    1_0_long_release:
-      name: off button 1 long press release 
-      default: []
-      selector:
-        action: {}
-    2_0_short:
-      name: off button 2 short press  
-      default: []
-      selector:
-        action: {}
-    2_0_long:
-      name: off button 2 long press 
-      default: []
-      selector:
-        action: {}
-    2_0_long_release:
-      name: off button 2 long press release 
-      default: []
-      selector:
-        action: {}
-    3_0_short:
-      name: off button 3 short press  
-      default: []
-      selector:
-        action: {}
-    3_0_long:
-      name: off button 3 long press 
-      default: []
-      selector:
-        action: {}
-    3_0_long_release:
-      name: off button 3 long press release 
-      default: []
-      selector:
-        action: {}
-    4_0_short:
-      name: off button 4 short press  
-      default: []
-      selector:
-        action: {}
-    4_0_long:
-      name: off button 4 long press 
-      default: []
-      selector:
-        action: {}
-    4_0_long_release:
-      name: off button 4 long press release 
-      default: []
-      selector:
-        action: {}
+    on_buttons:
+      name: all off buttons
+      icon: mdi:power-off
+      description: these options control all the 'off' button actions on the right side of the device
+      input:
+        1_0_short:
+          name: off button 1 short press  
+          default: []
+          selector:
+            action: {}
+        1_0_long:
+          name: off button 1 long press 
+          default: []
+          selector:
+            action: {}
+        1_0_long_release:
+          name: off button 1 long press release 
+          default: []
+          selector:
+            action: {}
+        2_0_short:
+          name: off button 2 short press  
+          default: []
+          selector:
+            action: {}
+        2_0_long:
+          name: off button 2 long press 
+          default: []
+          selector:
+            action: {}
+        2_0_long_release:
+          name: off button 2 long press release 
+          default: []
+          selector:
+            action: {}
+        3_0_short:
+          name: off button 3 short press  
+          default: []
+          selector:
+            action: {}
+        3_0_long:
+          name: off button 3 long press 
+          default: []
+          selector:
+            action: {}
+        3_0_long_release:
+          name: off button 3 long press release 
+          default: []
+          selector:
+            action: {}
+        4_0_short:
+          name: off button 4 short press  
+          default: []
+          selector:
+            action: {}
+        4_0_long:
+          name: off button 4 long press 
+          default: []
+          selector:
+            action: {}
+        4_0_long_release:
+          name: off button 4 long press release 
+          default: []
+          selector:
+            action: {}
 
 
 
